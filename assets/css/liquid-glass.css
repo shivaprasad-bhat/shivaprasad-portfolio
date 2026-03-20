@@ -70,6 +70,7 @@ body.dark-vertion.black-bg {
     color: var(--lg-text-primary);
     opacity: 1;
     overflow-x: hidden;
+    padding-bottom: 80px; /* space for bottom navbar */
 }
 
 /* Ambient gradient orbs behind content */
@@ -173,35 +174,45 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   NAVIGATION — Floating Pill Glass Nav
+   NAVIGATION — Bottom Floating Pill Glass Nav
    ============================================ */
 .mh-header {
     background: transparent !important;
     border-bottom: none;
+    border-top: none;
     padding: 16px 0;
     transition: all var(--lg-duration) var(--lg-ease);
     z-index: 100;
+    /* Override the top fixed positioning — move to bottom */
+    top: auto !important;
+    bottom: 0 !important;
 }
 
 .mh-header .container {
     max-width: 1200px;
+    display: flex;
+    justify-content: center;
 }
 
 .mh-header .navbar {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(var(--lg-blur-lg)) saturate(1.6);
-    -webkit-backdrop-filter: blur(var(--lg-blur-lg)) saturate(1.6);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(var(--lg-blur-xl)) saturate(1.8);
+    -webkit-backdrop-filter: blur(var(--lg-blur-xl)) saturate(1.8);
     border: 1px solid var(--lg-border);
     border-radius: var(--lg-radius-pill);
-    padding: 6px 8px 6px 24px;
+    padding: 5px 6px;
     box-shadow:
+        0 -4px 24px rgba(0, 0, 0, 0.25),
         0 4px 24px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
         0 0 0 0.5px rgba(255, 255, 255, 0.04);
     transition: all var(--lg-duration) var(--lg-ease);
     position: relative;
     overflow: visible;
     clip-path: inset(0 round var(--lg-radius-pill));
+    margin: 0 auto;
+    display: inline-flex !important;
+    width: auto;
 }
 
 /* Subtle inner caustic shimmer on nav */
@@ -215,11 +226,11 @@ h1, h2, h3, h4, h5, h6 {
     background: conic-gradient(
         from 0deg,
         transparent 0deg,
-        rgba(123, 108, 246, 0.03) 60deg,
+        rgba(123, 108, 246, 0.04) 60deg,
         transparent 120deg,
-        rgba(78, 205, 196, 0.03) 180deg,
+        rgba(78, 205, 196, 0.04) 180deg,
         transparent 240deg,
-        rgba(68, 184, 242, 0.02) 300deg,
+        rgba(68, 184, 242, 0.03) 300deg,
         transparent 360deg
     );
     animation: lg-caustic-spin 12s linear infinite;
@@ -230,19 +241,20 @@ h1, h2, h3, h4, h5, h6 {
     to { transform: rotate(360deg); }
 }
 
-/* Scrolled state */
+/* Scrolled state — keep consistent at bottom */
 .mh-header.nav-strict {
-    padding: 8px 0;
+    padding: 12px 0;
 }
 
 .mh-header.nav-strict .navbar {
-    background: rgba(10, 10, 24, 0.75);
-    backdrop-filter: blur(var(--lg-blur-xl)) saturate(1.8);
-    -webkit-backdrop-filter: blur(var(--lg-blur-xl)) saturate(1.8);
+    background: rgba(10, 10, 24, 0.8);
+    backdrop-filter: blur(var(--lg-blur-xl)) saturate(2);
+    -webkit-backdrop-filter: blur(var(--lg-blur-xl)) saturate(2);
     border-color: var(--lg-border-light);
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        0 -4px 32px rgba(0, 0, 0, 0.4),
+        0 4px 32px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .dark-vertion .nav-strict {
@@ -250,24 +262,36 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Nav Links */
+.mh-header .navbar-brand {
+    display: none; /* No brand logo in bottom nav */
+}
+
 .mh-header .navbar-nav {
     gap: 2px;
     align-items: center;
+    margin: 0 auto !important; /* center the links, override Bootstrap ml-auto */
+}
+
+.mh-header .desktop-nav {
+    flex: 1;
+    display: flex !important;
+    justify-content: center;
 }
 
 .mh-header .navbar-nav li a {
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     color: var(--lg-text-secondary) !important;
-    padding: 8px 16px !important;
+    padding: 7px 12px !important;
     border-radius: var(--lg-radius-pill);
     border: 1px solid transparent;
     transition: all var(--lg-duration-fast) var(--lg-ease);
     position: relative;
     border-bottom: none;
+    white-space: nowrap;
 }
 
 .mh-header .navbar-nav li a:hover {
@@ -424,11 +448,125 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   ABOUT SECTION
+   ABOUT SECTION — Enhanced Liquid Glass
    ============================================ */
+.mh-about {
+    position: relative;
+}
+
+.mh-about .mh-about-inner {
+    padding-left: 40px;
+}
+
 .mh-about .mh-about-inner h2 {
-    font-size: 36px;
+    font-size: 38px;
+    font-weight: 800;
     letter-spacing: -0.03em;
+    line-height: 1.15;
+    background: linear-gradient(135deg, var(--lg-text-primary) 0%, var(--lg-accent-bright) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 24px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Accent underline beneath heading */
+.mh-about .mh-about-inner h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--lg-accent-gradient);
+    background-size: 200% 100%;
+    animation: lg-text-shimmer 4s ease-in-out infinite;
+}
+
+.mh-about .mh-about-inner p {
+    color: var(--lg-text-secondary);
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 20px;
+}
+
+.mh-about .mh-about-inner p strong {
+    color: var(--lg-accent-bright);
+    font-weight: 600;
+}
+
+/* About image — glass frame with shimmer */
+.mh-about-img {
+    border-radius: var(--lg-radius-xl);
+    overflow: hidden;
+    position: relative;
+    background: var(--lg-bg-glass);
+    padding: 6px;
+    border: 1px solid var(--lg-border);
+    box-shadow:
+        0 8px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mh-about-img img {
+    border-radius: calc(var(--lg-radius-xl) - 4px);
+}
+
+.mh-about-img:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: var(--lg-border-accent);
+    box-shadow:
+        0 16px 56px rgba(123, 108, 246, 0.2),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Glass overlay gradient on image */
+.mh-about-img::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: calc(var(--lg-radius-xl) - 4px);
+    background: linear-gradient(
+        180deg,
+        transparent 50%,
+        rgba(6, 6, 16, 0.4) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.mh-about-img:hover::before {
+    opacity: 0.6;
+}
+
+/* Shimmer sweep on image */
+.mh-about-img::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: -100%;
+    width: 60%;
+    height: calc(100% - 12px);
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.06) 50%,
+        transparent 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+    transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: calc(var(--lg-radius-xl) - 4px);
+}
+
+.mh-about-img:hover::after {
+    left: 140%;
 }
 
 .mh-about-tag ul li span {
@@ -446,21 +584,6 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(123, 108, 246, 0.15) !important;
     border-color: var(--lg-accent-bright);
     box-shadow: 0 0 12px rgba(123, 108, 246, 0.15);
-}
-
-.mh-about-img {
-    border-radius: var(--lg-radius-xl);
-    overflow: hidden;
-    position: relative;
-}
-
-.mh-about-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    border: 1px solid var(--lg-border);
-    pointer-events: none;
 }
 
 /* ============================================
@@ -531,7 +654,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid var(--lg-border);
     border-radius: var(--lg-radius-lg) !important;
     transition: all var(--lg-duration) var(--lg-spring);
-    box-shadow: var(--lg-shadow-sm), var(--lg-shadow-inner);
+    box-shadow: none;
     position: relative;
     overflow: hidden;
 }
@@ -539,8 +662,8 @@ h1, h2, h3, h4, h5, h6 {
 .dark-bg:hover {
     background: var(--lg-bg-glass-hover) !important;
     border-color: var(--lg-border-accent);
-    box-shadow: var(--lg-shadow-md), var(--lg-shadow-glow);
-    transform: translateY(-3px);
+    box-shadow: none;
+    transform: translateY(-2px);
 }
 
 /* Top-edge highlight */
@@ -597,7 +720,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--lg-bg-glass);
     backdrop-filter: blur(var(--lg-blur-sm)) saturate(1.3);
     -webkit-backdrop-filter: blur(var(--lg-blur-sm)) saturate(1.3);
-    box-shadow: var(--lg-shadow-sm), var(--lg-shadow-inner);
+    box-shadow: none;
 }
 
 /* Left accent bar */
@@ -622,9 +745,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .mh-experince .mh-education-deatils .mh-education-item:hover,
 .mh-work .mh-experience-deatils .mh-work-item:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     border-color: var(--lg-border-accent);
-    box-shadow: var(--lg-shadow-md), var(--lg-shadow-glow);
+    box-shadow: none;
 }
 
 .mh-education {
@@ -737,30 +860,90 @@ h1, h2, h3, h4, h5, h6 {
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
 }
 
 .skill-tag {
-    display: inline-block;
-    padding: 7px 16px;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
     border-radius: var(--lg-radius-pill);
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 13px;
     font-weight: 500;
-    color: var(--lg-text-secondary);
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--lg-border);
-    transition: all var(--lg-duration-fast) var(--lg-spring);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    letter-spacing: 0.02em;
+    color: var(--lg-text-primary);
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 50%, rgba(123,108,246,0.06) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Inner glass refraction highlight */
+.skill-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, transparent 100%);
+    border-radius: var(--lg-radius-pill) var(--lg-radius-pill) 0 0;
+    pointer-events: none;
+}
+
+/* Subtle accent glow on the left edge */
+.skill-tag::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -2px;
+    width: 4px;
+    height: 60%;
+    background: linear-gradient(180deg, var(--lg-accent), var(--lg-teal));
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    transform: scaleY(0.5);
 }
 
 .skill-tag:hover {
     color: #fff;
-    background: var(--lg-accent);
-    border-color: var(--lg-accent);
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 4px 14px rgba(123, 108, 246, 0.3);
+    background:
+        linear-gradient(135deg, rgba(123,108,246,0.18) 0%, rgba(78,205,196,0.10) 50%, rgba(68,184,242,0.12) 100%);
+    border-color: rgba(123, 108, 246, 0.35);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow:
+        0 6px 20px rgba(123, 108, 246, 0.25),
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.skill-tag:hover::after {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+/* Staggered entrance animation */
+.skill-tag:nth-child(odd) {
+    animation: lg-pill-float 6s ease-in-out infinite;
+}
+.skill-tag:nth-child(even) {
+    animation: lg-pill-float 6s ease-in-out 3s infinite;
+}
+
+@keyframes lg-pill-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
 }
 
 /* Professional skills cards */
@@ -1018,10 +1201,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   SCROLL OFFSET for fixed navbar
+   SCROLL OFFSET — navbar is now at bottom, minimal top offset
    ============================================ */
 [id] {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 20px;
 }
 
 /* ============================================
@@ -1068,12 +1251,14 @@ h1, h2, h3, h4, h5, h6 {
         display: none !important;
     }
 
-    /* Make the header a minimal transparent bar */
+    /* Make the header invisible on mobile — nav handled by mobile panel */
     .mh-header {
         padding: 0;
         background: transparent !important;
         border: none;
         box-shadow: none;
+        top: auto !important;
+        bottom: 0 !important;
     }
 
     .mh-header.nav-strict {
@@ -1081,14 +1266,15 @@ h1, h2, h3, h4, h5, h6 {
         background: transparent !important;
     }
 
-    /* Show the standalone hamburger */
+    /* Show the standalone hamburger at bottom-right */
     .mobile-only-toggler {
         display: flex;
         align-items: center;
         justify-content: center;
         position: fixed;
-        top: 20px;
+        bottom: 20px;
         right: 20px;
+        top: auto;
         z-index: 1001;
         width: 48px;
         height: 48px;
@@ -1309,6 +1495,12 @@ h1, h2, h3, h4, h5, h6 {
 /* Section separators — subtle glass line */
 .section-separator {
     position: relative;
+    padding-top: 60px; /* reduced — no top navbar to clear */
+}
+
+/* Hero home section — fill the top gap */
+.home-padding {
+    padding: 80px 0 100px !important; /* less top pad since nav is at bottom */
 }
 
 /* Ensure all sections render above ambient orbs */
@@ -1332,16 +1524,16 @@ section, footer, header {
 .nav-theme-toggle {
     display: flex;
     align-items: center;
-    margin-left: 8px;
+    margin-left: 4px;
 }
 
 .theme-toggle-btn {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border: 1px solid var(--lg-border);
-    border-radius: 50%;
-    background: var(--lg-bg-glass);
+    border-radius: var(--lg-radius-pill);
+    background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(var(--lg-blur-sm));
     -webkit-backdrop-filter: blur(var(--lg-blur-sm));
     cursor: pointer;
@@ -1352,6 +1544,7 @@ section, footer, header {
     overflow: hidden;
     padding: 0;
     outline: none;
+    flex-shrink: 0;
 }
 
 .theme-toggle-btn:hover {
@@ -1457,17 +1650,19 @@ body.light-mode a {
 
 /* Nav in light mode */
 body.light-mode .mh-header .navbar {
-    background: rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.55);
     border-color: var(--lg-border);
     box-shadow:
+        0 -4px 24px rgba(0, 0, 0, 0.04),
         0 4px 24px rgba(0, 0, 0, 0.06),
         inset 0 1px 0 rgba(255, 255, 255, 0.80);
 }
 
 body.light-mode .mh-header.nav-strict .navbar {
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.75);
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.08),
+        0 -4px 32px rgba(0, 0, 0, 0.06),
+        0 4px 32px rgba(0, 0, 0, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.90);
 }
 
@@ -1526,12 +1721,13 @@ body.light-mode .mh-home .mh-header-info .social-icon li .fa:hover {
 body.light-mode .dark-bg {
     background: var(--lg-bg-glass) !important;
     border-color: var(--lg-border);
-    box-shadow: var(--lg-shadow-sm), var(--lg-shadow-inner);
+    box-shadow: none;
 }
 
 body.light-mode .dark-bg:hover {
     background: var(--lg-bg-glass-hover) !important;
     border-color: var(--lg-border-accent);
+    box-shadow: none;
 }
 
 /* Work section background */
@@ -1545,15 +1741,35 @@ body.light-mode .mh-volunteering-section {
 
 /* Skill tags */
 body.light-mode .skill-tag {
-    background: rgba(255, 255, 255, 0.5);
-    border-color: var(--lg-border);
-    color: var(--lg-text-secondary);
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(244,242,247,0.60) 50%, rgba(99,86,224,0.08) 100%);
+    border: 1px solid rgba(99, 86, 224, 0.12);
+    color: #3d3270;
+    box-shadow:
+        0 2px 8px rgba(99, 86, 224, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -1px 0 rgba(99, 86, 224, 0.04);
+    backdrop-filter: blur(16px) saturate(1.6);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+}
+
+body.light-mode .skill-tag::before {
+    background: linear-gradient(180deg, rgba(255,255,255,0.75) 0%, transparent 100%);
+}
+
+body.light-mode .skill-tag::after {
+    background: linear-gradient(180deg, var(--lg-accent), #4ecdc4);
 }
 
 body.light-mode .skill-tag:hover {
     color: #fff;
-    background: var(--lg-accent);
-    border-color: var(--lg-accent);
+    background:
+        linear-gradient(135deg, rgba(99,86,224,0.85) 0%, rgba(123,108,246,0.75) 50%, rgba(78,205,196,0.70) 100%);
+    border-color: rgba(99, 86, 224, 0.50);
+    box-shadow:
+        0 8px 24px rgba(99, 86, 224, 0.22),
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 /* Featured items */
@@ -1574,6 +1790,38 @@ body.light-mode .btn.btn-fill {
 
 body.light-mode .btn.btn-fill:hover {
     box-shadow: 0 8px 28px rgba(99, 86, 224, 0.30);
+}
+
+/* About section light mode */
+body.light-mode .mh-about .mh-about-inner h2 {
+    background: linear-gradient(135deg, var(--lg-text-primary) 0%, var(--lg-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-mode .mh-about .mh-about-inner p strong {
+    color: var(--lg-accent);
+}
+
+body.light-mode .mh-about-img {
+    background: rgba(255, 255, 255, 0.50);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 8px 40px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.80);
+}
+
+body.light-mode .mh-about-img:hover {
+    border-color: rgba(99, 86, 224, 0.25);
+    box-shadow:
+        0 16px 56px rgba(99, 86, 224, 0.10),
+        0 8px 24px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.80);
+}
+
+body.light-mode .mh-about-img::before {
+    background: linear-gradient(180deg, transparent 60%, rgba(244, 242, 247, 0.3) 100%);
 }
 
 /* Scrollbar light */

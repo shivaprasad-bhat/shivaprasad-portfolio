@@ -133,7 +133,7 @@
         scrollSpeed: 400,
         scrollThreshold: 0.5,
         easing: 'swing',
-        scrollOffset: 80,
+        scrollOffset: 20,
     });
 
     /*
