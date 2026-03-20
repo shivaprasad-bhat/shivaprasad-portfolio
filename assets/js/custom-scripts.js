@@ -101,8 +101,10 @@
     $('#mh-header').onePageNav({
         currentClass: 'active',
         changeHash: false,
-        scrollSpeed: 750,
+        scrollSpeed: 400,
         scrollThreshold: 0.5,
+        easing: 'swing',
+        scrollOffset: 80,
     });
 
     /*
@@ -138,7 +140,7 @@
     */
     $(window).on('scroll', function () {
         var scroll = $(window).scrollTop();
-        if (scroll >= 50) {
+        if (scroll >= 30) {
             $('.nav-scroll').addClass('nav-strict');
         } else {
             $('.nav-scroll').removeClass('nav-strict');
