@@ -5,6 +5,16 @@
         return this.addBack.apply(this, arguments);
     };
 
+    /* ========================
+       Theme Toggle (Light/Dark) — restore saved theme
+       ======================== */
+    (function initThemeToggle() {
+        var savedTheme = localStorage.getItem('portfolio-theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    })();
+
     /* Loader Code Start */
     $(window).on('load', function () {
         $('.section-loader').fadeOut('slow');
@@ -79,17 +89,36 @@
     |=====================
     */
 
-    var trigger = $('.navbar-toggler'),
+    var mobileToggler = $('.mobile-only-toggler'),
         overlay = $('.overlay'),
-        navc = $('.navbar-collapse'),
-        active = false;
+        mobilePanel = $('#mobileNavPanel');
 
-    $('.navbar-toggler, .navbar-nav li a, .overlay').on('click', function () {
-        $('.navbar-toggler').toggleClass('active');
-        //   $('#js-navbar-menu').toggleClass('active');
-        //   $('.navbar-collapse').toggleClass('show');
+    // Open/close mobile nav
+    mobileToggler.on('click', function () {
+        mobileToggler.toggleClass('active');
         overlay.toggleClass('active');
-        navc.toggleClass('active');
+        mobilePanel.toggleClass('active');
+    });
+
+    overlay.on('click', function () {
+        mobileToggler.removeClass('active');
+        overlay.removeClass('active');
+        mobilePanel.removeClass('active');
+    });
+
+    // Close mobile nav when a link is clicked
+    $('.mobile-nav-list li a').on('click', function () {
+        mobileToggler.removeClass('active');
+        overlay.removeClass('active');
+        mobilePanel.removeClass('active');
+    });
+
+    // Theme toggle — both desktop and mobile buttons
+    $(document).off('click', '#themeToggle');
+    $('#themeToggle, #themeToggleMobile').on('click', function () {
+        document.body.classList.toggle('light-mode');
+        var isLight = document.body.classList.contains('light-mode');
+        localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
     });
 
     /*

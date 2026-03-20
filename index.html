@@ -36,6 +36,13 @@
     <link rel="stylesheet" href="assets/css/responsive.css" />
     <!-- Liquid Glass Theme -->
     <link rel="stylesheet" href="assets/css/liquid-glass.css" />
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+        if (localStorage.getItem('portfolio-theme') === 'light') {
+            document.documentElement.style.backgroundColor = '#f4f2f7';
+        }
+    </script>
 </head>
 
 <body class="dark-vertion black-bg">
@@ -53,15 +60,17 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
+            <!-- Mobile hamburger — lives outside the pill -->
+            <button class="mobile-only-toggler" type="button"
+                aria-label="Toggle navigation">
+                <span class="icon"></span>
+            </button>
+
             <nav class="navbar navbar-expand-lg mh-nav nav-btn">
                 <a class="navbar-brand" href="#"> </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Desktop nav links (hidden on mobile via navbar-expand-lg) -->
+                <div class="navbar-collapse desktop-nav" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-0 ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="#mh-home">Home</a>
@@ -84,10 +93,36 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#mh-contact">Contact</a>
                         </li>
+                        <li class="nav-item nav-theme-toggle">
+                            <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light/dark theme">
+                                <i class="fa fa-sun-o theme-icon-light"></i>
+                                <i class="fa fa-moon-o theme-icon-dark"></i>
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </div>
+    </div>
+
+    <!-- Mobile slide-out panel — OUTSIDE the navbar pill -->
+    <div class="mobile-nav-panel" id="mobileNavPanel">
+        <ul class="mobile-nav-list">
+            <li><a href="#mh-home">Home</a></li>
+            <li><a href="#mh-about">About</a></li>
+            <li><a href="#mh-skills">Skills</a></li>
+            <li><a href="#mh-experience">Education & Experiences</a></li>
+            <li><a href="#mh-certificates">Certificates</a></li>
+            <li><a href="#mh-featured-project">Projects</a></li>
+            <li><a href="#mh-contact">Contact</a></li>
+            <li class="mobile-theme-toggle">
+                <button class="theme-toggle-btn" id="themeToggleMobile" aria-label="Toggle light/dark theme">
+                    <i class="fa fa-sun-o theme-icon-light"></i>
+                    <i class="fa fa-moon-o theme-icon-dark"></i>
+                    <span>Toggle Theme</span>
+                </button>
+            </li>
+        </ul>
     </div>
 </header>
 
@@ -947,25 +982,7 @@
                 <div class="container mt-30">
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-12 mh-footer-address">
-                            <div class="col-sm-12 xs-no-padding">
-                                <div class="mh-address-footer-item dark-bg shadow-1 media wow fadeInUp"
-                                    data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                    <div class="each-icon">
-                                        <i class="fa fa-location-arrow"></i>
-                                    </div>
-                                    <div class="each-info media-body">
-                                        <h4>Address</h4>
-                                        <address>
-                                            #422, Neelmanekeri, Murur
-                                            Post, 
-                                            <br>
-                                            Kumta Taluk
-                                            <br>
-                                            Uttarakannada, 581362
-                                        </address>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="col-sm-12 xs-no-padding">
                                 <div class="mh-address-footer-item media dark-bg shadow-1 wow fadeInUp"
                                     data-wow-duration="0.8s" data-wow-delay="0.4s">
