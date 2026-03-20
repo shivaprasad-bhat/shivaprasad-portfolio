@@ -498,6 +498,18 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 
+@media (max-width: 767px) {
+    .mh-about .mh-about-inner {
+        padding-left: 0;
+        text-align: center;
+        margin: 30px 15px;
+    }
+    .mh-about .mh-about-inner h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
 /* About image — glass frame with shimmer */
 .mh-about-img {
     border-radius: var(--lg-radius-xl);
@@ -1221,6 +1233,239 @@ h1, h2, h3, h4, h5, h6 {
     vertical-align: middle;
     margin-right: 8px;
     color: var(--lg-accent);
+}
+
+/* ============================================
+   WORK EXPERIENCE — Timeline Design
+   ============================================ */
+.work-timeline {
+    position: relative;
+    padding-left: 32px;
+    max-width: 720px;
+}
+
+/* Vertical line */
+.work-timeline::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 7px;
+    width: 2px;
+    bottom: 8px;
+    background: linear-gradient(180deg, var(--lg-accent), var(--lg-teal), transparent);
+    border-radius: 2px;
+    opacity: 0.3;
+}
+
+.work-timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.work-timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Timeline dot */
+.work-timeline-dot {
+    position: absolute;
+    left: -32px;
+    top: 24px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--lg-bg-deep);
+    border: 2px solid var(--lg-accent);
+    z-index: 2;
+    transition: all 0.35s ease;
+}
+
+.work-timeline-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lg-accent);
+    transform: translate(-50%, -50%);
+    transition: all 0.35s ease;
+}
+
+.work-timeline-item:hover .work-timeline-dot {
+    border-color: var(--lg-accent-bright);
+    box-shadow: 0 0 12px rgba(123, 108, 246, 0.3);
+}
+
+.work-timeline-item:hover .work-timeline-dot::after {
+    background: var(--lg-accent-bright);
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+/* Timeline card */
+.work-timeline-card {
+    background: var(--lg-bg-glass);
+    backdrop-filter: blur(var(--lg-blur-sm)) saturate(1.3);
+    -webkit-backdrop-filter: blur(var(--lg-blur-sm)) saturate(1.3);
+    border: 1px solid var(--lg-border);
+    border-radius: var(--lg-radius-lg);
+    padding: 24px 28px;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top highlight */
+.work-timeline-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    pointer-events: none;
+}
+
+.work-timeline-item:hover .work-timeline-card {
+    border-color: var(--lg-border-accent);
+    transform: translateX(4px);
+}
+
+/* Card header */
+.work-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.work-card-title h4 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--lg-text-primary);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+}
+
+.work-company {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--lg-accent-bright);
+}
+
+.work-company .fa {
+    font-size: 12px;
+    margin-right: 4px;
+    opacity: 0.7;
+}
+
+.work-card-date {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--lg-text-muted);
+    white-space: nowrap;
+    padding: 5px 12px;
+    border: 1px solid var(--lg-border);
+    border-radius: var(--lg-radius-pill);
+    background: rgba(255, 255, 255, 0.03);
+    flex-shrink: 0;
+}
+
+.work-card-date .fa {
+    margin-right: 4px;
+    opacity: 0.6;
+}
+
+/* Responsibility tags */
+.work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.work-tag {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: var(--lg-radius-pill);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--lg-text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--lg-border);
+    transition: all 0.3s ease;
+}
+
+.work-timeline-item:hover .work-tag {
+    border-color: rgba(123, 108, 246, 0.15);
+    color: var(--lg-text-primary);
+}
+
+/* Responsive */
+@media (max-width: 575px) {
+    .work-timeline {
+        padding-left: 24px;
+    }
+    .work-timeline-dot {
+        left: -24px;
+        width: 12px;
+        height: 12px;
+    }
+    .work-timeline-dot::after {
+        width: 4px;
+        height: 4px;
+    }
+    .work-card-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .work-timeline-card {
+        padding: 18px 20px;
+    }
+}
+
+/* Light mode overrides */
+body.light-mode .work-timeline::before {
+    opacity: 0.2;
+}
+
+body.light-mode .work-timeline-dot {
+    background: var(--lg-bg-deep);
+}
+
+body.light-mode .work-timeline-card {
+    background: rgba(255, 255, 255, 0.55);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .work-timeline-card::before {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.70), transparent);
+}
+
+body.light-mode .work-timeline-item:hover .work-timeline-card {
+    border-color: rgba(99, 86, 224, 0.20);
+}
+
+body.light-mode .work-card-date {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .work-tag {
+    background: rgba(255, 255, 255, 0.60);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: var(--lg-text-secondary);
+}
+
+body.light-mode .work-timeline-item:hover .work-tag {
+    border-color: rgba(99, 86, 224, 0.15);
+    color: var(--lg-text-primary);
 }
 
 /* ============================================
