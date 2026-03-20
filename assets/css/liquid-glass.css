@@ -66,11 +66,16 @@
 /* ---------- Base ---------- */
 body.dark-vertion.black-bg {
     background-color: var(--lg-bg-deep) !important;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Inter', sans-serif;
     color: var(--lg-text-primary);
     opacity: 1;
     overflow-x: hidden;
     padding-bottom: 80px; /* space for bottom navbar */
+}
+
+/* Global font override — San Francisco typeface */
+body, h1, h2, h3, h4, h5, h6, p, a, span, li, div, input, textarea, button, select {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Inter', 'Segoe UI', sans-serif !important;
 }
 
 /* Ambient gradient orbs behind content */
@@ -330,12 +335,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 1.08;
-    background: linear-gradient(135deg, #f0eef6 0%, #7b6cf6 40%, #4ecdc4 70%, #44b8f2 100%);
-    background-size: 200% 200%;
+    background: linear-gradient(135deg, #f0eef6 0%, #a899f7 50%, #7b6cf6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: lg-text-shimmer 6s ease-in-out infinite;
 }
 
 @keyframes lg-text-shimmer {
@@ -786,6 +789,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     display: flex;
+    align-items: flex-start;
     gap: 20px;
 }
 
@@ -828,6 +832,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     transition: all 0.35s ease;
+    margin-top: 2px;
 }
 
 .edu-card-icon .fa {
@@ -844,8 +849,9 @@ h1, h2, h3, h4, h5, h6 {
 .edu-card-content {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     flex: 1;
+    min-width: 0;
 }
 
 .edu-card-date {
@@ -868,7 +874,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .edu-card-degree {
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 700;
     color: var(--lg-text-primary);
     margin: 0;
@@ -900,21 +906,22 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 .edu-badge {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    padding: 4px 12px;
+    gap: 6px;
+    padding: 5px 14px;
     border-radius: var(--lg-radius-pill);
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 600;
     color: var(--lg-accent-bright);
     background: rgba(123, 108, 246, 0.08);
     border: 1px solid rgba(123, 108, 246, 0.15);
+    transition: all 0.3s ease;
 }
 
 .edu-badge .fa {
@@ -923,8 +930,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .edu-badge-gold {
     color: #f0b952;
-    background: rgba(240, 185, 82, 0.08);
-    border-color: rgba(240, 185, 82, 0.2);
+    background: rgba(240, 185, 82, 0.10);
+    border-color: rgba(240, 185, 82, 0.25);
 }
 
 .edu-card:hover .edu-badge {
@@ -2096,8 +2103,7 @@ body.light-mode .img-color-overlay {
 }
 
 body.light-mode .mh-home .mh-header-info h2 {
-    background: linear-gradient(135deg, #1a1730 0%, #6356e0 40%, #3aa89f 70%, #3594c4 100%);
-    background-size: 200% 200%;
+    background: linear-gradient(135deg, #1a1730 0%, #5a4abf 50%, #6356e0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
