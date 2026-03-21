@@ -11,12 +11,12 @@
 /* ---------- CSS Variables ---------- */
 :root {
     /* Backgrounds */
-    --lg-bg-deep: #060610;
-    --lg-bg-base: #0a0a18;
-    --lg-bg-surface: rgba(255, 255, 255, 0.03);
-    --lg-bg-elevated: rgba(255, 255, 255, 0.05);
-    --lg-bg-glass: rgba(255, 255, 255, 0.06);
-    --lg-bg-glass-hover: rgba(255, 255, 255, 0.10);
+    --lg-bg-deep: #121228;
+    --lg-bg-base: #181832;
+    --lg-bg-surface: rgba(255, 255, 255, 0.07);
+    --lg-bg-elevated: rgba(255, 255, 255, 0.09);
+    --lg-bg-glass: rgba(255, 255, 255, 0.11);
+    --lg-bg-glass-hover: rgba(255, 255, 255, 0.17);
 
     /* Accent */
     --lg-accent: #7b6cf6;
@@ -26,21 +26,21 @@
     --lg-accent-glow: rgba(123, 108, 246, 0.25);
 
     /* Text */
-    --lg-text-primary: #f0eef6;
-    --lg-text-secondary: rgba(240, 238, 246, 0.60);
-    --lg-text-muted: rgba(240, 238, 246, 0.38);
+    --lg-text-primary: #f2f0f8;
+    --lg-text-secondary: rgba(240, 238, 246, 0.78);
+    --lg-text-muted: rgba(240, 238, 246, 0.55);
 
     /* Glass borders */
-    --lg-border: rgba(255, 255, 255, 0.08);
-    --lg-border-light: rgba(255, 255, 255, 0.12);
-    --lg-border-accent: rgba(123, 108, 246, 0.25);
+    --lg-border: rgba(255, 255, 255, 0.14);
+    --lg-border-light: rgba(255, 255, 255, 0.20);
+    --lg-border-accent: rgba(123, 108, 246, 0.35);
 
     /* Shadows */
-    --lg-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --lg-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
-    --lg-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-    --lg-shadow-glow: 0 0 30px rgba(123, 108, 246, 0.15);
-    --lg-shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    --lg-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --lg-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.28);
+    --lg-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.35);
+    --lg-shadow-glow: 0 0 30px rgba(123, 108, 246, 0.20);
+    --lg-shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
     /* Radii */
     --lg-radius-xs: 8px;
@@ -85,7 +85,7 @@ body.dark-vertion.black-bg::after {
     position: fixed;
     border-radius: 50%;
     filter: blur(120px);
-    opacity: 0.12;
+    opacity: 0.18;
     z-index: 0;
     pointer-events: none;
 }
@@ -324,9 +324,9 @@ h1, h2, h3, h4, h5, h6 {
 .dark-vertion .img-color-overlay {
     background: linear-gradient(
         160deg,
-        rgba(6, 6, 16, 0.94) 0%,
-        rgba(10, 10, 24, 0.90) 50%,
-        rgba(6, 6, 16, 0.96) 100%
+        rgba(18, 18, 40, 0.84) 0%,
+        rgba(24, 24, 50, 0.78) 50%,
+        rgba(18, 18, 40, 0.86) 100%
     );
 }
 
@@ -693,7 +693,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 8%;
     right: 8%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
     pointer-events: none;
 }
 
